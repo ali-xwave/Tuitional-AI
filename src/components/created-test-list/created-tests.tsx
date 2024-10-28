@@ -13,19 +13,19 @@ const CreatedTests = () => {
         <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap" }}>
           <div>
             <h2 style={{ color: colors.textWhite, fontWeight: "600", fontSize: "4.5vh" }}>
-              Created Tests
+              My Tests
             </h2>
           </div>
-          <div>
+          <div style={{ background: colors.buttonBlack, padding: "2px", borderRadius: "5px" }}>
             <button style={{
-              fontSize: "2vh", background: colors.primaryBlue, padding: "2vh 4vh",
+              fontSize: "2vh", background: colors.primaryBlue, padding: "2vh 8vh",
               fontWeight: "600", border: "none", borderRadius: "10px"
-            }}>Created Tests
+            }}>My Tests
             </button>
             <button style={{
-              fontSize: "2vh", background: colors.buttonBlack, padding: "2vh 4vh",
+              fontSize: "2vh", padding: "2vh 4vh", background: "none",
               fontWeight: "600", border: "none", borderRadius: "10px", color: colors.textWhite
-            }}>Attempted Tests</button>
+            }}>Available Tests</button>
           </div>
         </div>
 

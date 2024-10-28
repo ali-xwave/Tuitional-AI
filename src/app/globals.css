@@ -37,19 +37,20 @@
 }
 
 .title {
-  font-size: 18px;
+  font-size: 3vh;
   margin-bottom: 10px;
 }
 
 .date {
-  font-size: 14px;
+  font-size: 2vh;
   color: #c0c0c0;
   margin-bottom: 15px;
 }
 
 .button {
   padding: 10px 30px;
-  font-size: 12px;
+  font-size: 2vh;
+  border-radius: 5px;
   color: #fff;
   border: none;
   cursor: pointer;
@@ -57,7 +58,10 @@
 
 .medium {
   padding: 10px 30px !important;
+  font-size: 2vh;
   background-color: #e2d571;
   color: #000;
   border: none;
+  font-weight: 600;
+  border-radius: 5px;
 }

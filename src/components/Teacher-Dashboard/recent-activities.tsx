@@ -7,7 +7,7 @@ const RecentActivities = () => {
       <div style={{
         background: "#242728",
         width: "100%",
-        margin: "20px 0 0 0",
+        margin: "10px 0 0 0",
       }}>
         <div style={{ padding: "30px 20px 13px 20px" }}>
           <div style={{ fontSize: "20px", color: "white" }}>
