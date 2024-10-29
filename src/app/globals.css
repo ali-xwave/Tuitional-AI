@@ -7,6 +7,15 @@
   width: 100%; /* Full width */
 }
 
+.component-back {
+  background: linear-gradient(to bottom, #2d393c 50%, transparent 100%),
+    radial-gradient(circle at bottom left, #324c59, transparent 130%),
+    radial-gradient(circle at bottom right, #324c59, transparent 130%);
+  background-blend-mode: overlay;
+  height: 100vh; /* Full viewport height */
+  width: 100%; /* Full width */
+}
+
 .test-paragraph {
   font-size: 12px;
   margin: 5px 0 0 0px;
@@ -65,3 +74,4 @@
   font-weight: 600;
   border-radius: 5px;
 }
+

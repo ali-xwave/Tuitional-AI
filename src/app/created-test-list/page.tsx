@@ -4,7 +4,7 @@ import colors from '../../config/colors';
 import Cards from "@/components/created-test-list/cards";
 const Page = () => {
   return (
-    <div className="component-background">
+    <div className="component-back">
       <div style={{ padding: "20px" }}>
         <Header />
         <div style={{

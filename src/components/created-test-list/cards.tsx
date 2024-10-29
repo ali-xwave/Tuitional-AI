@@ -1,58 +1,36 @@
 import colors from "@/config/colors";
-import date from "../../../public/assets/Images/static/student dashboard date img.png";
-import iconimg from '../../../public/assets/Images/static/send perfomance icon dashboard.png';
-import Image from "next/image";
+import { CalendarToday, ArrowForward } from '@mui/icons-material';
 import { leagueSpartan } from "@/app/fonts";
 
 export default function Cards() {
   const cardData = [
-    { img: date, title: "Diagnostic Test 4", date: "28th Sept, 2024", Medium: "Medium", icon: iconimg },
-    { img: date, title: "Diagnostic Test 4", date: "28th Sept, 2024", Medium: "Medium", icon: iconimg },
-    { img: date, title: "Diagnostic Test 4", date: "28th Sept, 2024", Medium: "Medium", icon: iconimg },
-    { img: date, title: "Diagnostic Test 4", date: "28th Sept, 2024", Medium: "Medium", icon: iconimg },
-    { img: date, title: "Diagnostic Test 4", date: "28th Sept, 2024", Medium: "Medium", icon: iconimg },
-    { img: date, title: "Diagnostic Test 4", date: "28th Sept, 2024", Medium: "Medium", icon: iconimg },
-    { img: date, title: "Diagnostic Test 4", date: "28th Sept, 2024", Medium: "Medium", icon: iconimg },
-    { img: date, title: "Diagnostic Test 4", date: "28th Sept, 2024", Medium: "Medium", icon: iconimg },
-    { img: date, title: "Diagnostic Test 4", date: "28th Sept, 2024", Medium: "Medium", icon: iconimg },
-    { img: date, title: "Diagnostic Test 4", date: "28th Sept, 2024", Medium: "Medium", icon: iconimg },
-    { img: date, title: "Diagnostic Test 4", date: "28th Sept, 2024", Medium: "Medium", icon: iconimg },
-    { img: date, title: "Diagnostic Test 4", date: "28th Sept, 2024", Medium: "Medium", icon: iconimg },
+    { title: "Diagnostic Test 4", date: "28th Sept, 2024", difficultyLevel: "Easy", type: "Mock" },
+    { title: "Diagnostic Test 4", date: "28th Sept, 2024", difficultyLevel: "Medium", type: "Test" },
+    { title: "Diagnostic Test 4", date: "28th Sept, 2024", difficultyLevel: "Hard", type: "Game" },
+    { title: "Diagnostic Test 4", date: "28th Sept, 2024", difficultyLevel: "Easy", type: "Mock" },
+
   ];
 
   const testButtonStyles = [
     {
-      background: "linear-gradient(108.41deg, rgba(226, 213, 113, 0) 0%, rgba(226, 213, 113, 0.2) 57.74%)",
+      background: colors.MockBackground,
       border: "1px solid transparent",
       borderImage: "linear-gradient(108.41deg, rgba(226, 213, 113, 0) 0%, rgba(226, 213, 113, 0.2) 57.74%) 1",
+      type: "Mock"
     },
     {
-      background: "linear-gradient(108.41deg, rgba(248, 106, 106, 0) 0%, rgba(248, 106, 106, 0.2) 57.74%)",
+      background: colors.TestBackground,
       border: "2px solid transparent",
       borderImage: "linear-gradient(108.41deg, rgba(248, 106, 106, 0) 0%, rgba(248, 106, 106, 0.2) 57.74%) 1",
+      type: "Test"
     },
     {
-      background: "linear-gradient(108.41deg, rgba(140, 251, 210, 0) 0%, rgba(140, 251, 210, 0.2) 57.74%)",
+      background: colors.GameBackground,
       border: "1px solid transparent",
       borderImage: "linear-gradient(108.41deg, rgba(140, 251, 210, 0) 0%, rgba(140, 251, 210, 0.2) 57.74%) 1",
-    },
-    {
-      background: "linear-gradient(108.41deg, rgba(226, 213, 113, 0) 0%, rgba(226, 213, 113, 0.2) 57.74%)",
-      border: "1px solid transparent",
-      borderImage: "linear-gradient(108.41deg, rgba(226, 213, 113, 0) 0%, rgba(226, 213, 113, 0.2) 57.74%) 1",
+      type: "Game"
     },
   ];
-
-  const buttonText = (index: number) => {
-    const mockIndices = [0, 3, 4, 7, 8, 11];
-    const testIndices = [1, 5, 9];
-    const gameIndices = [2, 6, 10];
-    
-    if (mockIndices.includes(index)) return "Mock";
-    if (testIndices.includes(index)) return "Test";
-    if (gameIndices.includes(index)) return "Game";
-    return "Mock";
-  };
 
   return (
     <div className={leagueSpartan.className}>
@@ -62,17 +40,36 @@ export default function Cards() {
             <h2 className="title">{data.title}</h2>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <div style={{ display: "flex", gap: "10px" }}>
-                <Image src={data.img} alt="date icon" style={{width: "2vh", height: "2vh"}} />
+                <CalendarToday style={{ fontSize: "2vh" }} /> {/* Calendar icon from MUI */}
                 <p className="date">{data.date}</p>
               </div>
-              <div>
-                <Image src={data.icon} alt="icon" style={{width: "6vh", height: "6vh"}} />
+              <div
+                style={{
+                  backgroundColor: "#38B6FF",
+                  borderRadius: "50%",
+                  padding: "10px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "40px",
+                  height: "40px",
+                }}
+              >
+                <ArrowForward style={{ fontSize: "24px", color: "#fff" }} /> {/* Arrow icon with white color */}
               </div>
             </div>
             <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
-              <button className="medium">Medium</button>
-              <button className="button" style={testButtonStyles[index % 4]}>
-                {buttonText(index)}
+              <button className="medium" style={{
+                background: {
+                  "Easy": '#8CFBD2',
+                  "Medium": "#e2d571",
+                  "Hard": "#F86A6A"
+                }[data.difficultyLevel]
+              }}>
+                {data.difficultyLevel}
+              </button>
+              <button className="button" style={testButtonStyles[testButtonStyles.findIndex(item => item?.type === data?.type)]}>
+                {data.type}
               </button>
             </div>
           </div>

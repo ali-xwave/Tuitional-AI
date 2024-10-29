@@ -1,31 +1,42 @@
 "use client";
-import { Grid, InputBase, MenuItem, Paper, Select, Typography } from "@mui/material";
+import { useState } from "react";
+import { Grid, InputBase, Typography } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import { Box } from "@mui/system";
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import colors from '../../config/colors';
 import { leagueSpartan } from "@/app/fonts";
+import FilterByDate from "./FilterByDate";
+import Cards from "@/components/created-test-list/cards"; 
 
-const CreatedTests = () => {
+const CreatedTests = (handleCalendar: any) => {
+  const [activeTab, setActiveTab] = useState("My Tests"); 
+
+  const buttonStyle = (tabName: string) => ({
+    fontSize: "2vh",
+    background: activeTab === tabName ? colors.primaryBlue : "none",
+    padding: "2vh 8vh",
+    fontWeight: "600",
+    border: "none",
+    borderRadius: "10px",
+    color: colors.textWhite,
+  });
+
   return (
     <>
       <div className={leagueSpartan.className}>
         <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap" }}>
           <div>
             <h2 style={{ color: colors.textWhite, fontWeight: "600", fontSize: "4.5vh" }}>
-              My Tests
+              {activeTab}
             </h2>
           </div>
           <div style={{ background: colors.buttonBlack, padding: "2px", borderRadius: "5px" }}>
-            <button style={{
-              fontSize: "2vh", background: colors.primaryBlue, padding: "2vh 8vh",
-              fontWeight: "600", border: "none", borderRadius: "10px"
-            }}>My Tests
+            <button onClick={() => setActiveTab("My Tests")} style={buttonStyle("My Tests")}>
+              My Tests
             </button>
-            <button style={{
-              fontSize: "2vh", padding: "2vh 4vh", background: "none",
-              fontWeight: "600", border: "none", borderRadius: "10px", color: colors.textWhite
-            }}>Available Tests</button>
+            <button onClick={() => setActiveTab("Available Tests")} style={buttonStyle("Available Tests")}>
+              Available Tests
+            </button>
           </div>
         </div>
 
@@ -53,38 +64,11 @@ const CreatedTests = () => {
                   }}
                 />
               </Box>
-              <Box sx={{
-                width: '100%',
-              }}>
-                <Select
-                  value="Sep 1 - 30, 2024"
-                  displayEmpty
-                  renderValue={(selected) => (
-                    <Box sx={{
-                      display: 'flex', alignItems: 'center',
-                      gap: '10px',
-                    }}>
-                      <CalendarMonthIcon sx={{
-                        color: colors.primaryBlue,
-                        width: "4vh", height: "3.5vh"
-                      }} />
-                      <Typography sx={{ fontSize: "2.5vh" }}>{selected}</Typography>
-                    </Box>
-                  )}
-                  sx={{
-                    backgroundColor: colors.darkBackground, color: colors.textWhite,
-                    borderRadius: '10px', height: "8vh",
-                    border: 'none', display: 'flex',
-                    alignItems: 'center', width: '100%'
-                  }}
-                >
-                  <MenuItem value="Sep 1 - 30, 2024">Sep 1 - 30, 2024</MenuItem>
-                  <MenuItem value="Oct 1 - 31, 2024">Oct 1 - 31, 2024</MenuItem>
-                </Select>
+              <Box sx={{ width: '100%' }}>
+                <FilterByDate changeFn={handleCalendar} />
               </Box>
             </Box>
           </Grid>
-
           <Grid item xs={12} lg={6}>
             <Box sx={{
               display: "flex", alignItems: "center",
@@ -103,6 +87,11 @@ const CreatedTests = () => {
             </Box>
           </Grid>
         </Grid>
+
+        <div style={{ marginTop: "20px" }}>
+          {/* Conditional rendering based on the active tab */}
+          {activeTab === "Available Tests" && <Cards />}
+        </div>
       </div>
     </>
   );
