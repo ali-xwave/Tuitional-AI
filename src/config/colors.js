@@ -23,6 +23,9 @@ const colors = {
     "linear-gradient(108.41deg, rgba(248, 106, 106, 0) 0%, rgba(248, 106, 106, 0.2) 57.74%)",
   GameBackground:
     "linear-gradient(108.41deg, rgba(140, 251, 210, 0) 0%, rgba(140, 251, 210, 0.2) 57.74%)",
+  DiagnosticBg: "#7BEDFF",
+  BiologyBg: "#8CFBD2",
+  IGCSEBg: "#BCE5FC",
 };
 
 export default colors;
