@@ -1,119 +1,117 @@
-"use client"
+"use client";
 import colors from '@/config/colors';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import profile from '../../public/assets/Images/static/Profile-pic.png';
 import uaeflag from '../../../tuitional-ai/public/assets/Images/static/uae-icon.png';
 import Link from 'next/link';
 import { leagueSpartan } from '@/app/fonts';
 import stars from '../../../tuitional-ai/public/assets/Images/static/profile-stars.png';
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import PersonalInfo from './Teacher-Profile/PersonalInfo';
+import Education from './Teacher-Profile/Education';
+import UploadMedia from './Teacher-Profile/Media';
+
 const Layout = () => {
-  const [selectedSection, setSelectedSection] = useState('');
+  const [selectedSection, setSelectedSection] = useState('My Profile');
+  const [completionPercentage, setCompletionPercentage] = useState(40);
 
   const handleSectionChange = (section: React.SetStateAction<string>) => {
     setSelectedSection(section);
+
+    setCompletionPercentage(
+      section === 'Education' ? 50 : section === 'Media' ? 65 : 40
+    );
   };
 
   return (
-    <div>
-      <div className={leagueSpartan.className}>
-        <div style={styles.container}>
-
-          <Grid container spacing={2}>
-            {/* <Box sx={styles.profileWrapper}> */}
-            <Grid item xs={12} lg={3}>
-              <Box sx={styles.profileCard}>
-                <div>
-                  <Image src={profile} alt='' style={styles.profileImage} />
-                </div>
-                <div style={styles.profileName}>Karla Poole</div>
-                <div style={styles.roleContainer}>
-                  <div style={styles.roleButton}>Teacher</div>
-                  <button style={styles.countryButton}>
-                    <div>
-                      <Image src={uaeflag} alt='' style={styles.flagImage} />
-                    </div>
-                    <div style={{ fontSize: "2.5vh" }}>UAE</div>
-                  </button>
-                </div>
+    <>
+      <Box sx={styles.container} className={leagueSpartan.className}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} lg={3}>
+            <Box sx={styles.profileCard}>
+              <Box>
+                <Image src={profile} alt='Profile picture' style={styles.profileImage} />
               </Box>
-
-              <Box sx={styles.profileCompletionCard}>
-                <div style={styles.completionCircle}>40%</div>
-                <Box sx={styles.completionText}>
-                  Complete your <br /> profile now!
+              <Typography sx={styles.profileName} className={leagueSpartan.className}>Karla Poole</Typography>
+              <Box sx={styles.roleContainer}>
+                <Typography sx={styles.roleButton} className={leagueSpartan.className}>Teacher</Typography>
+                <Box sx={styles.countryButton}>
+                  <Image src={uaeflag} alt='UAE flag' style={styles.flagImage} />
+                  <Typography sx={{ fontSize: "2.5vh" }} className={leagueSpartan.className}>UAE</Typography>
                 </Box>
-                <Box sx={styles.completionDescription}>
-                  Complete your profile now to enjoy personalized features and a <br /> smoother experience!
-                </Box>
-                <div>
-                  <Image src={stars} alt='' style={{
-                    position: "absolute",
-                    top: "5%",
-                    right: "5%",
-                    width: "7vh",
-                    height: "7vh",
-                  }} />
-                </div>
               </Box>
-            </Grid>
+            </Box>
 
-            <Grid item xs={12} lg={9}>
-              <div style={styles.navBar}>
-                <div>
-                  <Link href="#" onClick={() => handleSectionChange('My Profile')} style={styles.navLink}>
-                    My Profile
-                  </Link>
-                </div>
-                <div>
-                  <Link href="#" onClick={() => handleSectionChange('Education')} style={styles.navLink}>
-                    Education
-                  </Link>
-                </div>
-                <div>
-                  <Link href="#" onClick={() => handleSectionChange('Media')} style={styles.navLink}>
-                    Media
-                  </Link>
-                </div>
-              </div>
-              <div>
-                {/* Render PersonalInfo component when "My Profile" is selected */}
-                {selectedSection === 'My Profile' ? <PersonalInfo /> : 'Hi'}
-              </div>
-            </Grid>
-
-            {/* </Box> */}
+            <Box sx={styles.profileCompletionCard}>
+              <Typography sx={styles.completionCircle} className={leagueSpartan.className}>{completionPercentage}%</Typography>
+              <Box sx={styles.completionText}>
+                Complete your <br /> profile now!
+              </Box>
+              <Typography sx={styles.completionDescription} className={leagueSpartan.className}>
+                Complete your profile to enjoy personalized features and a smoother experience!
+              </Typography>
+              <Box>
+                <Image src={stars} alt='Stars icon' style={{
+                  position: "absolute",
+                  top: "5%",
+                  right: "5%",
+                  width: "7vh",
+                  height: "7vh",
+                }} />
+              </Box>
+            </Box>
           </Grid>
-        </div>
-      </div>
-    </div >
+
+          <Grid item xs={12} lg={9}>
+            <Box sx={styles.navBar} >
+              <Link href="#" onClick={() => handleSectionChange('My Profile')} style={{
+                ...styles.navLink,
+                background: selectedSection === 'My Profile' ? styles.activeLink.background : 'none',
+              }}>
+                My Profile
+              </Link>
+              <Link href="#" onClick={() => handleSectionChange('Education')} style={{
+                ...styles.navLink,
+                background: selectedSection === 'Education' ? styles.activeLink.background : 'none',
+              }}>
+                Education
+              </Link>
+              <Link href="#" onClick={() => handleSectionChange('Media')} style={{
+                ...styles.navLink,
+                background: selectedSection === 'Media' ? styles.activeLink.background : 'none',
+              }}>
+                Media
+              </Link>
+            </Box>
+            <Box sx={styles.sectionContent}>
+              {selectedSection === 'My Profile' && <PersonalInfo />}
+              {selectedSection === 'Education' && <Education />}
+              {selectedSection === 'Media' && <UploadMedia />}
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+    </>
   );
 };
 
 export default Layout;
-
 const styles = {
   container: {
     background: colors.backgroundMain,
-    padding: "40px",
+    padding: "3vh 5vh",
     height: "auto",
-    margin: "20px",
-  },
-  profileWrapper: {
-    // display: "flex",
-    // gap: "5vh",
-    // flexWrap: "wrap",
+    margin: "0 20px",
   },
   profileCard: {
     background: colors.backgroundTodo,
-    width: "18vw",
+    width: "20vw",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
-    padding: "3vh",
+    padding: "3.5vh 3vh",
     borderRadius: "5px",
   },
   profileImage: {
@@ -154,12 +152,12 @@ const styles = {
   },
   profileCompletionCard: {
     background: colors.backgroundTodo,
-    width: "18vw",
+    width: "20vw",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
-    padding: "3vh",
+    padding: "3.5vh 3vh",
     borderRadius: "5px",
     marginTop: "10px",
     position: "relative",
@@ -189,17 +187,32 @@ const styles = {
     fontWeight: "600",
     textAlign: "center",
   },
+  starsIcon: {
+    position: "absolute",
+    top: "5%",
+    right: "5%",
+    width: "7vh",
+    height: "7vh",
+  },
   navBar: {
     background: colors.backgroundTodo,
     display: "flex",
     gap: "5vh",
-    height: "7vh",
-    padding: "2vh 4vh",
+    height: "auto",
+    padding: "1vh 4vh",
     borderRadius: "5px",
   },
   navLink: {
     textDecoration: "none",
     color: colors.textWhite,
     fontSize: "2.5vh",
+    padding: "2vh 2vh",
+    borderRadius: "5px",
+  },
+  activeLink: {
+    background: 'linear-gradient(0deg, #38B6FF -86.54%, rgba(56, 182, 255, 0) 100%)',
+  },
+  sectionContent: {
+    paddingTop: "2vh",
   },
 };

@@ -1,6 +1,6 @@
 "use client";
 import { ArrowDropDown } from "@mui/icons-material";
-import { Grid, IconButton, Menu, MenuItem, Typography } from "@mui/material";
+import { Box, Grid, IconButton, Menu, MenuItem, Typography } from "@mui/material";
 import Image from "next/image";
 import React, { useState } from "react";
 import test from "../../../public/assets/images/static/Test Ellipse dashboard img.png";
@@ -37,12 +37,12 @@ const ProgressChart = () => {
   ];
 
   return (
-    <div className={leagueSpartan.className}>
-      <div style={styles.mainContainer}>
-        <div style={styles.padding}>
-          <div style={styles.dropdownContainer}>
+    <Box className={leagueSpartan.className}>
+      <Box style={styles.mainContainer}>
+        <Box style={styles.padding}>
+          <Box style={styles.dropdownContainer}>
             {dropdownLabels.map((label, index) => (
-              <div key={index} style={styles.dropdownButton}>
+              <Box key={index} style={styles.dropdownButton}>
                 <IconButton onClick={handleClick} style={styles.dropdownIcon}>
                   <Typography variant="body1" style={{ fontSize: "2vh" }}>{label}</Typography>
                   <ArrowDropDown style={{ padding: "0 0 0 10px" }} />
@@ -57,67 +57,67 @@ const ProgressChart = () => {
                   <MenuItem onClick={handleClose}>Settings</MenuItem>
                   <MenuItem onClick={handleClose}>Logout</MenuItem>
                 </Menu>
-              </div>
+              </Box>
             ))}
-          </div>
+          </Box>
 
-          <div style={styles.statusContainer}>
+          <Box style={styles.statusContainer}>
             {statusData.map((item, index) => (
-              <div key={index} style={styles.statusBox(item.color, item.border)}>
-                <div style={{ display: "flex", alignItems: "center", whiteSpace: "nowrap" }}>
-                  <span style={{ color: colors.textWhite, fontSize: "2.5vh" }}>{item.label}</span>
-                  <span style={{ paddingLeft: "20px", fontSize: "4vh", color: item.color }}>{item.count}</span>
-                </div>
-              </div>
+              <Box key={index} style={styles.statusBox(item.color, item.border)}>
+                <Box style={{ display: "flex", alignItems: "center", whiteSpace: "nowrap" }}>
+                  <Typography style={{ color: colors.textWhite, fontSize: "2.5vh" }}>{item.label}</Typography>
+                  <Typography style={{ paddingLeft: "20px", fontSize: "4vh", color: item.color }}>{item.count}</Typography>
+                </Box>
+              </Box>
             ))}
-          </div>
-        </div>
-      </div>
+          </Box>
+        </Box>
+      </Box>
 
-      <div style={{ margin: "20px 0 0 0" }}>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div style={styles.progressChartContainer}>
-            <h3 style={styles.progressChartText}>Progress Chart</h3>
-            <div style={{ display: "flex" }}>
-              <div>
-                <div style={{ display: "flex", alignItems: "Center", gap: "10px", padding: "5px 0", whiteSpace: "nowrap" }}>
+      <Box style={{ margin: "20px 0 0 0" }}>
+        <Box style={{ display: "flex", justifyContent: "space-between" }}>
+          <Box style={styles.progressChartContainer}>
+            <Typography style={styles.progressChartText}>Progress Chart</Typography>
+            <Box style={{ display: "flex" }}>
+              <Box>
+                <Box style={{ display: "flex", alignItems: "Center", gap: "10px", padding: "5px 0", whiteSpace: "nowrap" }}>
                   <Image src={test} alt="" />
-                  <div style={{ color: "#AAAAAA", fontSize: "1.5vh" }}>Tests Completed</div>
-                </div>
-                <div style={styles.chartDetails}>
+                  <Typography style={{ color: "#AAAAAA", fontSize: "1.5vh" }}>Tests Completed</Typography>
+                </Box>
+                <Box style={styles.chartDetails}>
                   <Image src={pending} alt="" />
-                  <div style={{ color: "#AAAAAA", fontSize: "1.5vh" }}>Tests Pending</div>
-                </div>
-              </div>
+                  <Typography style={{ color: "#AAAAAA", fontSize: "1.5vh" }}>Tests Pending</Typography>
+                </Box>
+              </Box>
               <Image src={chart} alt="" style={styles.progressChartImage} />
-            </div>
-          </div>
+            </Box>
+          </Box>
 
-          <div style={styles.studentProgressContainer}>
-            <div style={styles.studentProgressHeader}>
-              <div style={styles.StudentText}>Student Progress</div>
+          <Box style={styles.studentProgressContainer}>
+            <Box style={styles.studentProgressHeader}>
+              <Typography style={styles.StudentText}>Student Progress</Typography>
               <Image src={send} alt="send icon" style={{ width: "6vh", height: "6vh" }} />
-            </div>
+            </Box>
 
             <Grid container spacing={2}>
               {studentData.map((student, index) => (
                 <Grid item xs={12} lg={4} key={index}>
-                  <div style={styles.studentItem}>
-                    <div style={styles.studentItemInner}>
+                  <Box style={styles.studentItem}>
+                    <Box style={styles.studentItemInner}>
                       <Image src={affif} alt="" style={{ width: "5vh", height: "5vh" }} />
                       {student.name}
-                    </div>
-                    <div style={{ display: "flex", justifyContent: "center" }}>
+                    </Box>
+                    <Box style={{ display: "flex", justifyContent: "center" }}>
                       <button style={styles.progressButton(student.color)}>{student.progress}</button>
-                    </div>
-                  </div>
+                    </Box>
+                  </Box>
                 </Grid>
               ))}
             </Grid>
-          </div>
-        </div>
-      </div>
-    </div>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

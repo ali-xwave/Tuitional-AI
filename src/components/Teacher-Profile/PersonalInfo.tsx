@@ -1,17 +1,79 @@
 import colors from '@/config/colors';
 import Image from 'next/image';
-import React from 'react';
-// import uaeflag from '../../../tuitional-ai/public/assets/Images/static/uae-icon.png';
+import uaeflag from "../../../public/assets/Images/static/uae-icon.png";
+import { Box, Grid, Typography } from '@mui/material';
+import ActionsButtons from './actions-buttons';
 import { leagueSpartan } from '@/app/fonts';
-import { Box, Grid } from '@mui/material';
+
+export default function PersonalInfo() {
+  return (
+    <>
+      <Box sx={styles.container}>
+        <Typography sx={styles.header} className={leagueSpartan.className}>Personal Information</Typography>
+        <Grid container spacing={2}>
+          <Grid item xs={12} lg={4}>
+            <Box sx={styles.infoItem}>
+              <Typography sx={styles.label} className={leagueSpartan.className}>First Name</Typography>
+              <Typography sx={styles.value} className={leagueSpartan.className}>Karla</Typography>
+            </Box>
+          </Grid>
+
+          <Grid item xs={12} lg={4}>
+            <Box sx={styles.infoItem}>
+              <Typography sx={styles.label} className={leagueSpartan.className}>Last Name</Typography>
+              <Typography sx={styles.value} className={leagueSpartan.className}>Poole</Typography>
+            </Box>
+          </Grid>
+
+          <Grid item xs={12} lg={4}>
+            <Box sx={styles.infoItem}>
+              <Typography sx={styles.label} className={leagueSpartan.className}>Country</Typography>
+              <Box sx={styles.countryInfo}>
+                <Image src={uaeflag} alt="UAE Flag" width={22} height={12} />
+                <Typography sx={styles.countryText} className={leagueSpartan.className}>UAE</Typography>
+              </Box>
+            </Box>
+          </Grid>
+
+          <Grid item xs={12} lg={4}>
+            <Box sx={styles.infoItem}>
+              <Typography sx={styles.label} className={leagueSpartan.className}>Email Address</Typography>
+              <Typography sx={styles.value} className={leagueSpartan.className}>karlapoole@gmail.com</Typography>
+            </Box>
+          </Grid>
+
+          <Grid item xs={12} lg={4}>
+            <Box sx={styles.infoItem}>
+              <Typography sx={styles.label} className={leagueSpartan.className}>Phone</Typography>
+              <Typography sx={styles.fieldText} className={leagueSpartan.className}>fill this field</Typography>
+            </Box>
+          </Grid>
+
+          <Grid item xs={12} lg={4}>
+            <Box sx={styles.infoItem}>
+              <Typography sx={styles.label} className={leagueSpartan.className}>Gender</Typography>
+              <Typography sx={styles.fieldText} className={leagueSpartan.className}>fill this field</Typography>
+            </Box>
+          </Grid>
+
+        </Grid>
+        <Box sx={styles.actionButtons}>
+          <ActionsButtons />
+        </Box>
+      </Box>
+    </>
+  );
+}
 
 const styles = {
   container: {
-    background: colors.backgroundMain,
+    background: 'linear-gradient(180deg, #1D1F21 0%, #111213 100%)',
     borderRadius: "8px",
     color: colors.textWhite,
     width: "100%",
+    padding: "3vh 0 3vh 5vh",
     margin: "20px auto",
+    height: "60vh",
   },
   header: {
     fontSize: "4.5vh",
@@ -30,9 +92,13 @@ const styles = {
   },
   value: {
     color: colors.textWhite,
-    fontSize: "3vh",
+    fontSize: "2.5vh",
     fontWeight: "600",
-    padding: "2vh 0"
+    padding: ".5vh 0"
+  },
+  fieldText: {
+    fontSize: "2vh",
+    color: colors.textGray
   },
   countryInfo: {
     display: "flex",
@@ -43,60 +109,13 @@ const styles = {
     fontSize: "2vh",
     fontWeight: "600",
     color: colors.textWhite,
+    padding: "2vh 0"
+  },
+  actionButtons: {
+    display: 'flex',
+    gap: '10px',
+    marginTop: '10.9vh',
+    alignItem: "center",
+    justifyContent: "center"
   },
 };
-
-export default function PersonalInfo() {
-  return (
-    <Box sx={styles.container} className={leagueSpartan.className}>
-      <h2 style={styles.header}>Personal Information</h2>
-      <Grid container spacing={2}>
-        <Grid item xs={12} lg={4}>
-          <Box sx={styles.infoItem}>
-            <span style={styles.label}>First Name</span>
-            <span style={styles.value}>Karla</span>
-          </Box>
-        </Grid>
-
-        <Grid item xs={12} lg={4}>
-          <Box sx={styles.infoItem}>
-            <span style={styles.label}>Last Name</span>
-            <span style={styles.value}>Poole</span>
-          </Box>
-        </Grid>
-
-        <Grid item xs={12} lg={4}>
-          <Box sx={styles.infoItem}>
-            <span style={styles.label}>Country</span>
-            <Box style={styles.countryInfo}>
-              {/* <Image src={uaeflag} alt="UAE Flag" width={25} height={15} /> */}
-              <span style={styles.countryText}>UAE</span>
-            </Box>
-          </Box>
-        </Grid>
-
-        <Grid item xs={12} lg={4}>
-          <Box sx={styles.infoItem}>
-            <span style={styles.label}>Email Address</span>
-            <span style={styles.value}>karlapoole@gmail.com</span>
-          </Box>
-        </Grid>
-
-        <Grid item xs={12} lg={4}>
-          <Box sx={styles.infoItem}>
-            <span style={styles.label}>Phone</span>
-            <span style={styles.value}>Fill this field</span>
-          </Box>
-        </Grid>
-
-        <Grid item xs={12} lg={4}>
-          <Box sx={styles.infoItem}>
-            <span style={styles.label}>Gender</span>
-            <span style={styles.value}>Fill this field</span>
-          </Box>
-        </Grid>
-
-      </Grid>
-    </Box>
-  );
-}
